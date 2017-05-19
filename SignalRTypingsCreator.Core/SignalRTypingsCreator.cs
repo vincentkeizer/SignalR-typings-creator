@@ -7,20 +7,28 @@ namespace SignalRTypingsCreator.Core
 {
     public class SignalRTypingsCreator
     {
-        public void Generate(string assemblyName, string projectRootDir)
+        public void Generate(SignalRTypingsCreatorConfig config)
         {
-            var assembly = AppDomain.CurrentDomain.Load(assemblyName);
-            if (assembly != null)
+            if (config == null)
             {
-                var hubFinder = new HubFinder();
-                var hubs = hubFinder.FindHubs(assembly);
-
-                var generator = new TypingsGenerator();
-                var typeScriptClasses = generator.Generate(hubs);
-
-                var writer = new TypingsFileWriter();
-                writer.WriteFiles(projectRootDir, typeScriptClasses);
+                throw new Exception("Config cannot be null");
             }
+
+            var assembly = AppDomain.CurrentDomain.Load(config.AssemblyName);
+            if (assembly == null)
+            {
+                throw new Exception("Assembly not found");
+            }
+
+            var hubFinder = new HubFinder();
+            var hubs = hubFinder.FindHubs(assembly);
+
+            var generator = new TypingsGenerator();
+            var typeScriptClasses = generator.Generate(hubs);
+
+            var writer = new TypingsFileWriter();
+            writer.WriteFiles(config.ProjectRootDir, typeScriptClasses);
+
         }
     }
 }

@@ -6,10 +6,10 @@ namespace SignalRTypingsCreator.Core.Typings.Generating
 {
     public class TypingsGenerator
     {
-        public IEnumerable<TypeScriptClass> Generate(IEnumerable<Hub> hubs)
+        public IEnumerable<TypeScriptClass> Generate(HubList hubList)
         {
             var typeScriptClasslist = new List<TypeScriptClass>();
-            foreach (var hub in hubs)
+            foreach (var hub in hubList.Hubs)
             {
                 var typeScriptClass = GenerateTyping(hub);
                 typeScriptClasslist.Add(typeScriptClass);

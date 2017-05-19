@@ -36,7 +36,7 @@ public class ChatHub : Hub
 }
 ```
 
-Will result in the following typings file
+Will result in the following typings file (\Scripts\typings\Chathub.d.ts)
 
 ```csharp
 interface ChatHub {
