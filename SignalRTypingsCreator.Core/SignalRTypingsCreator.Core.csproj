@@ -63,7 +63,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SignalRTypingsCreatorConfig.cs" />
     <Compile Include="Typings\Generating\TypingsGenerator.cs" />
-    <Compile Include="Typings\TypeScriptClass.cs" />
+    <Compile Include="Typings\TypeScriptHubClass.cs" />
+    <Compile Include="Typings\TypeScriptHubList.cs" />
     <Compile Include="Typings\TypeScriptMethod.cs" />
     <Compile Include="Typings\Writing\TypingsFileWriter.cs" />
   </ItemGroup>

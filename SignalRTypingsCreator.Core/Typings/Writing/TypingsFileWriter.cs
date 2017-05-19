@@ -1,17 +1,16 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 
 namespace SignalRTypingsCreator.Core.Typings.Writing
 {
     public class TypingsFileWriter
     {
-        public void WriteFiles(string projectRootDir, IEnumerable<TypeScriptClass> typeScriptClasses)
+        public void WriteFiles(string projectRootDir, TypeScriptHubList typeScriptHubList)
         {
             var typingsDir = GetTypingsDirectory(projectRootDir);
 
-            foreach (var typeScriptClass in typeScriptClasses)
+            foreach (var typeScriptClass in typeScriptHubList.TypeScriptHubClasses)
             {
-                File.WriteAllText(typingsDir + typeScriptClass.GetTypingsFileName(), typeScriptClass.GenerateClass());
+                File.WriteAllText(typingsDir + typeScriptClass.GetTypingsFileName(), typeScriptClass.GenerateClassDefinition());
             }
         }
 

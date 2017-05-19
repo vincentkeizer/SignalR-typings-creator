@@ -5,12 +5,12 @@ using Microsoft.AspNet.SignalR.Hubs;
 
 namespace SignalRTypingsCreator.Core.Typings
 {
-    public class TypeScriptClass
+    public class TypeScriptHubClass
     {
         private readonly Type _hubType;
         private readonly IList<TypeScriptMethod> _methods;
 
-        public TypeScriptClass(Type hubType)
+        public TypeScriptHubClass(Type hubType)
         {
             _methods = new List<TypeScriptMethod>();
             _hubType = hubType;
@@ -37,7 +37,7 @@ namespace SignalRTypingsCreator.Core.Typings
             return _hubType.Name;
         }
 
-        public string GenerateClass()
+        public string GenerateClassDefinition()
         {
             StringBuilder stringBuilder = new StringBuilder();
             CreateHubInterface(stringBuilder);
