@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Microsoft.AspNet.SignalR.Hubs;
 
@@ -48,6 +49,12 @@ namespace SignalRTypingsCreator.Core.Typings
             return stringBuilder.ToString();
         }
 
+        public IEnumerable<TypeScriptModel> GetModels()
+        {
+            var typeScriptModels = _methods.SelectMany(m => m.GetModels());
+            return typeScriptModels;
+        }
+
         private void CreateHubInterface(StringBuilder stringBuilder)
         {
             var name = GetHubName();
@@ -57,7 +64,7 @@ namespace SignalRTypingsCreator.Core.Typings
             stringBuilder.AppendLine("}");
         }
 
-        private static void AddEmptyLine(StringBuilder stringBuilder)
+        private void AddEmptyLine(StringBuilder stringBuilder)
         {
             stringBuilder.AppendLine();
         }

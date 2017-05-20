@@ -8,9 +8,13 @@ namespace SignalRTypingsCreator.Core.Typings.Writing
         {
             var typingsDir = GetTypingsDirectory(projectRootDir);
 
-            foreach (var typeScriptClass in typeScriptHubList.TypeScriptHubClasses)
+            foreach (var typeScriptClass in typeScriptHubList.GetTypeScriptHubClasses())
             {
                 File.WriteAllText(typingsDir + typeScriptClass.GetTypingsFileName(), typeScriptClass.GenerateClassDefinition());
+            }
+            foreach (var typeScriptModel in typeScriptHubList.GetTypeScriptModels())
+            {
+                File.WriteAllText(typingsDir + typeScriptModel.GetTypingsFileName(), typeScriptModel.GenerateModelDefinition());
             }
         }
 

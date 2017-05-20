@@ -1,17 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using Microsoft.AspNet.SignalR.Hubs;
+using SignalRTypingsCreator.Core.Typings.Types;
 
 namespace SignalRTypingsCreator.Core.Typings
 {
     public class TypeScriptMethod
     {
         private readonly MethodInfo _method;
+        private readonly TypeScriptTypeHandler _typeScriptTypeHandler;
+        private readonly TypeScriptModelCreator _typeScriptModelCreator;
 
         public TypeScriptMethod(MethodInfo method)
         {
             this._method = method;
+            _typeScriptModelCreator = new TypeScriptModelCreator();
+            _typeScriptTypeHandler = new TypeScriptTypeHandler();
+
         }
 
         public string GenerateServerMethodDefinition()
@@ -24,10 +31,15 @@ namespace SignalRTypingsCreator.Core.Typings
             AddParameters(stringBuilder);
             
             stringBuilder.Append("):");
-            stringBuilder.Append(GetTypeScriptType(_method.ReturnType));
+            stringBuilder.Append(_typeScriptTypeHandler.GetTypeScriptType(_method.ReturnType));
             return stringBuilder.ToString();
         }
-        
+
+        public IEnumerable<TypeScriptModel> GetModels()
+        {
+            return _typeScriptModelCreator.CreateModels(_method);
+        }
+
         private string GetName()
         {
             var methodName = _method.Name;
@@ -58,27 +70,7 @@ namespace SignalRTypingsCreator.Core.Typings
         {
             stringBuilder.Append(parameter.Name);
             stringBuilder.Append(":");
-            stringBuilder.Append(GetTypeScriptType(parameter.ParameterType));
-        }
-
-        private string GetTypeScriptType(Type type)
-        {
-            switch (type.Name)
-            {
-                case "String":
-                    return "string";
-                case "Int":
-                case "Int32":
-                case "Int64":
-                    return "number";
-                case "Double":
-                case "Float":
-                    return "decimal";
-                case "Void":
-                    return "void";
-                default:
-                    return "any";
-            }
+            stringBuilder.Append(_typeScriptTypeHandler.GetTypeScriptType(parameter.ParameterType));
         }
     }
 }

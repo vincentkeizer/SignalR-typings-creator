@@ -66,6 +66,9 @@
     <Compile Include="Typings\TypeScriptHubClass.cs" />
     <Compile Include="Typings\TypeScriptHubList.cs" />
     <Compile Include="Typings\TypeScriptMethod.cs" />
+    <Compile Include="Typings\TypeScriptModel.cs" />
+    <Compile Include="Typings\Types\TypeScriptModelCreator.cs" />
+    <Compile Include="Typings\Types\TypeScriptTypeHandler.cs" />
     <Compile Include="Typings\Writing\TypingsFileWriter.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -12,10 +12,21 @@ msbuild:
 $(MSBuildProjectDirectory)\$(OutDir)SignalRTypingsCreator.exe "$(AssemblyName)" "$(MSBuildProjectDirectory)"
 ```
 
+c#
+
+```csharp
+var typingsCreator = new SignalRTypingsCreator.Core.SignalRTypingsCreator();
+typingsCreator.Generate(new SignalRTypingsCreatorConfig
+{
+    AssemblyName = "MyAssembly",
+    ProjectRootDir = "MyProjectRootDir"
+});
+```
 ## Features
 
 * Searches through the assembly for all Hub implementations and creates a definition file in the "Scripts/Typings" directory of the project.
 * Respects the HubName and HubMethodName attributes
+* Generates definition files for all models used in the hub (arguments and return types)
 
 ## Requirements
 
@@ -32,11 +43,19 @@ public class ChatHub : Hub
 {
     public void SendName(string name) { }
 
-    public void Send(string name, string message) { }
+    public void Send(Messge message) { }
+}
+
+public class Messge
+{
+    public string Name { get; set; }
+    public string Message { get; set; }
 }
 ```
 
-Will result in the following typings file (\Scripts\typings\Chathub.d.ts)
+Will result in the following typings files 
+
+\Scripts\typings\Chathub.d.ts
 
 ```csharp
 interface ChatHub {
@@ -46,7 +65,7 @@ interface ChatHub {
 
 interface ChatHubServer {
      sendName(name:string):void
-     send(name:string, message:string):void
+     send(message:Messge):void
 }
 
 interface SignalR
@@ -55,8 +74,17 @@ interface SignalR
 }
 ```
 
+\Scripts\typings\Message.d.ts
+
+```csharp
+interface Messge {
+     Name:string
+     Message:string
+}
+```
+
 ## Known issues
 
 * Client is defined as any.
-* Complex return types and arguments are defined as any
+* Circular references in models result in exceptions
 * Generated Definition file is not added to solution
