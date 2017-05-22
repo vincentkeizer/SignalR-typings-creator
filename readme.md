@@ -46,10 +46,10 @@ public class ChatHub : Hub
     public void Send(Messge message) { }
 }
 
-public class Messge
+public class Message
 {
     public string Name { get; set; }
-    public string Message { get; set; }
+    public string Text { get; set; }
 }
 ```
 
@@ -65,7 +65,7 @@ interface ChatHub {
 
 interface ChatHubServer {
      sendName(name:string):void
-     send(message:Messge):void
+     send(message:Message):void
 }
 
 interface SignalR
@@ -77,9 +77,9 @@ interface SignalR
 \Scripts\typings\Message.d.ts
 
 ```csharp
-interface Messge {
+interface Message {
      Name:string
-     Message:string
+     Text:string
 }
 ```
 
@@ -88,3 +88,4 @@ interface Messge {
 * Client is defined as any.
 * Circular references in models result in exceptions
 * Generated Definition file is not added to solution
+* Generics in return types and arguments are not yet supported
