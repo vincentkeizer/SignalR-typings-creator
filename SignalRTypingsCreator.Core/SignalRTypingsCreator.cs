@@ -1,6 +1,6 @@
 ﻿using System;
 using SignalRTypingsCreator.Core.Hubs.Finding;
-using SignalRTypingsCreator.Core.Typings.Generating;
+using SignalRTypingsCreator.Core.Typings.Creation;
 using SignalRTypingsCreator.Core.Typings.Writing;
 
 namespace SignalRTypingsCreator.Core
@@ -23,8 +23,8 @@ namespace SignalRTypingsCreator.Core
             var hubFinder = new HubFinder();
             var hubs = hubFinder.FindHubs(assembly);
 
-            var generator = new TypingsGenerator();
-            var typeScriptClasses = generator.Generate(hubs);
+            var generator = new TypeScriptHubListFactory();
+            var typeScriptClasses = generator.Create(hubs);
 
             var writer = new TypingsFileWriter();
             writer.WriteFiles(config.ProjectRootDir, typeScriptClasses);

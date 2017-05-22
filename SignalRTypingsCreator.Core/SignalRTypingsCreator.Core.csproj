@@ -56,13 +56,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Hubs\Creation\HubFactory.cs" />
+    <Compile Include="Hubs\Hub.cs" />
     <Compile Include="Hubs\HubList.cs" />
     <Compile Include="SignalRTypingsCreator.cs" />
     <Compile Include="Hubs\Finding\HubFinder.cs" />
-    <Compile Include="Hubs\Hub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SignalRTypingsCreatorConfig.cs" />
-    <Compile Include="Typings\Generating\TypingsGenerator.cs" />
+    <Compile Include="Typings\Creation\TypeScriptHubClassFactory.cs" />
+    <Compile Include="Typings\Creation\TypeScriptHubListFactory.cs" />
     <Compile Include="Typings\TypeScriptHubClass.cs" />
     <Compile Include="Typings\TypeScriptHubList.cs" />
     <Compile Include="Typings\TypeScriptMethod.cs" />
