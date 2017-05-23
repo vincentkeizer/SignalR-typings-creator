@@ -26,7 +26,7 @@ namespace SignalRTypingsCreator.Core.Typings
 
             return _modelType.FullName == other._modelType.FullName;
         }
-        
+
         public override int GetHashCode()
         {
             return (_modelType != null ? _modelType.GetHashCode() : 0);
@@ -42,9 +42,9 @@ namespace SignalRTypingsCreator.Core.Typings
             var models = new List<TypeScriptModel>();
             foreach (var property in GetProperties())
             {
-                if (_typeScriptTypeHandler.IsUnknownType(property.PropertyType))
+                var model = _typeScriptModelCreator.CreateModel(property);
+                if (model != null)
                 {
-                    var model = _typeScriptModelCreator.CreateModel(property);
                     var innerModels = model.GetModels();
                     models.AddRange(innerModels);
                     models.Add(model);

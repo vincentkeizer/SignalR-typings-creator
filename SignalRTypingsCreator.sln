@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRDemo", "SignalRDemo\SignalRDemo.csproj", "{62F83230-B8B8-4463-B315-75E112336859}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRTypingsCreator.Core.Tests", "SignalRTypingsCreator.Core.Tests\SignalRTypingsCreator.Core.Tests.csproj", "{68C2213D-CB5F-42F5-A694-3876F94CAD52}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{62F83230-B8B8-4463-B315-75E112336859}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62F83230-B8B8-4463-B315-75E112336859}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62F83230-B8B8-4463-B315-75E112336859}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68C2213D-CB5F-42F5-A694-3876F94CAD52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68C2213D-CB5F-42F5-A694-3876F94CAD52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68C2213D-CB5F-42F5-A694-3876F94CAD52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68C2213D-CB5F-42F5-A694-3876F94CAD52}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

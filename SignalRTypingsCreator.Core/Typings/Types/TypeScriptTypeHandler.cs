@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 
 namespace SignalRTypingsCreator.Core.Typings.Types
 {
@@ -15,11 +16,16 @@ namespace SignalRTypingsCreator.Core.Typings.Types
                 case "Int64":
                     return "number";
                 case "Double":
-                case "Float":
+                case "Single":
                     return "decimal";
                 case "Void":
                     return "void";
                 default:
+                    if (IsCollection(type))
+                    {
+                        var collectionType = GetCollectionType(type);
+                        return $"{collectionType}[]";
+                    }
                     if (IsModel(type))
                     {
                         return GetTypeName(type);
@@ -30,7 +36,40 @@ namespace SignalRTypingsCreator.Core.Typings.Types
 
         public bool IsUnknownType(Type type)
         {
-            return IsModel(type) && GetTypeScriptType(type) == GetTypeName(type);
+            return IsCollection(type) || (IsModel(type) && GetTypeScriptType(type) == GetTypeName(type));
+        }
+
+        public bool IsCollection(Type type)
+        {
+            return type.IsArray || type.IsGenericType && typeof(IEnumerable).IsAssignableFrom(type);
+        }
+
+        public Type GetTypeFromCollection(Type type)
+        {
+            if (IsCollection(type))
+            {
+                if (type.IsArray)
+                {
+                    var arrayType = type.GetElementType();
+                    return arrayType;
+                }
+                if (type.IsGenericType)
+                {
+                    var genericType = type.GetGenericArguments()[0];
+                    return genericType;
+                }
+            }
+            return null;
+        }
+
+        private string GetCollectionType(Type type)
+        {
+            var collectionType = GetTypeFromCollection(type);
+            if (collectionType != null)
+            {
+                return GetTypeScriptType(collectionType);
+            }
+            return null;
         }
 
         private string GetTypeName(Type type)

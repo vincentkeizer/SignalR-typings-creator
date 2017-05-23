@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Vincent Keizer")]
 [assembly: AssemblyProduct("SignalRTypingsCreator.Core")]
-[assembly: AssemblyCopyright("Copyright Vincent Keizer ©  2017")]
+[assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

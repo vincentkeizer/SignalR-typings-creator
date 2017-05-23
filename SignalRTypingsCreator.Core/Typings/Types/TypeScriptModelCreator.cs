@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 
 namespace SignalRTypingsCreator.Core.Typings.Types
@@ -15,17 +16,19 @@ namespace SignalRTypingsCreator.Core.Typings.Types
         public IEnumerable<TypeScriptModel> CreateModels(MethodInfo methodInfo)
         {
             var models = new List<TypeScriptModel>();
-            if (_typeScriptTypeHandler.IsUnknownType(methodInfo.ReturnType))
+            var returnTypeModel = CreateTypeScriptModel(methodInfo.ReturnType);
+            if (returnTypeModel != null)
             {
-                models.Add(new TypeScriptModel(methodInfo.ReturnType));
+                models.Add(returnTypeModel);
             }
             var parameters = methodInfo.GetParameters();
             for (var i = 0; i < parameters.Length; i++)
             {
                 var parameter = parameters[i];
-                if (_typeScriptTypeHandler.IsUnknownType(parameter.ParameterType))
+                var parameterModel = CreateTypeScriptModel(parameter.ParameterType);
+                if (parameterModel != null)
                 {
-                    models.Add(new TypeScriptModel(parameter.ParameterType));
+                    models.Add(parameterModel);
                 }
             }
             return models;
@@ -33,10 +36,21 @@ namespace SignalRTypingsCreator.Core.Typings.Types
 
         public TypeScriptModel CreateModel(PropertyInfo property)
         {
-            if (_typeScriptTypeHandler.IsUnknownType(property.PropertyType))
+            return CreateTypeScriptModel(property.PropertyType);
+        }
+
+        private TypeScriptModel CreateTypeScriptModel(Type type)
+        {
+            if (_typeScriptTypeHandler.IsUnknownType(type))
             {
-                return new TypeScriptModel(property.PropertyType);
+                if (_typeScriptTypeHandler.IsCollection(type))
+                {
+                    var collectionType = _typeScriptTypeHandler.GetTypeFromCollection(type);
+                    return new TypeScriptModel(collectionType);
+                }
+                return new TypeScriptModel(type);
             }
+            
             return null;
         }
     }

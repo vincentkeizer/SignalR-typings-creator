@@ -27,6 +27,7 @@ typingsCreator.Generate(new SignalRTypingsCreatorConfig
 * Searches through the assembly for all Hub implementations and creates a definition file in the "Scripts/Typings" directory of the project.
 * Respects the HubName and HubMethodName attributes
 * Generates definition files for all models used in the hub (arguments and return types)
+* Supports Array and IEnumerable types
 
 ## Requirements
 
@@ -88,4 +89,3 @@ interface Message {
 * Client is defined as any.
 * Circular references in models result in exceptions
 * Generated Definition file is not added to solution
-* Generics in return types and arguments are not yet supported
