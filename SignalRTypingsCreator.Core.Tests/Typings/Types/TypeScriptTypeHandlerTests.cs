@@ -106,5 +106,71 @@ namespace SignalRTypingsCreator.Core.Tests.Typings.Types
 
             Assert.AreEqual($"{nameof(DummyClass)}[]", typeScriptType);
         }
+
+        [TestMethod]
+        public void WhenTypeIsArray_IsCollection()
+        {
+            var typeScriptTypeHandler = new TypeScriptTypeHandler();
+            Type type = typeof(int[]);
+
+            var isCollection = typeScriptTypeHandler.IsCollection(type);
+
+            Assert.IsTrue(isCollection);
+        }
+
+        [TestMethod]
+        public void WhenTypeIsIEnumerable_IsCollection()
+        {
+            var typeScriptTypeHandler = new TypeScriptTypeHandler();
+            Type type = typeof(IEnumerable<int>);
+
+            var isCollection = typeScriptTypeHandler.IsCollection(type);
+
+            Assert.IsTrue(isCollection);
+        }
+
+        [TestMethod]
+        public void WhenTypeIsClass_NoCollection()
+        {
+            var typeScriptTypeHandler = new TypeScriptTypeHandler();
+            Type type = typeof(DummyClass);
+
+            var isCollection = typeScriptTypeHandler.IsCollection(type);
+
+            Assert.IsFalse(isCollection);
+        }
+
+        [TestMethod]
+        public void WhenTypeIsValueType_NoCollection()
+        {
+            var typeScriptTypeHandler = new TypeScriptTypeHandler();
+            Type type = typeof(int);
+
+            var isCollection = typeScriptTypeHandler.IsCollection(type);
+            
+            Assert.IsFalse(isCollection);
+        }
+
+        [TestMethod]
+        public void WhenTypeIsClass_UnknownType()
+        {
+            var typeScriptTypeHandler = new TypeScriptTypeHandler();
+            Type type = typeof(DummyClass);
+
+            var isCollection = typeScriptTypeHandler.IsUnknownType(type);
+
+            Assert.IsTrue(isCollection);
+        }
+
+        [TestMethod]
+        public void WhenTypeIsValueType_NotUnknownType()
+        {
+            var typeScriptTypeHandler = new TypeScriptTypeHandler();
+            Type type = typeof(int);
+
+            var isCollection = typeScriptTypeHandler.IsUnknownType(type);
+
+            Assert.IsFalse(isCollection);
+        }
     }
 }
