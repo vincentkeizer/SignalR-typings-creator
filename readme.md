@@ -47,7 +47,7 @@ typingsCreator.Generate(new SignalRTypingsCreatorConfig
 
 ## Requirements
 
-* [SignalR 2.2](https://www.nuget.org/packages/Microsoft.AspNet.SignalR/)
+* [Microsoft.AspNet.SignalR.Core 2.2](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.Core/)
 * [jQuery typings](https://www.nuget.org/packages/jquery.TypeScript.DefinitelyTyped/)
 * [SignalR typings](https://www.nuget.org/packages/signalr.TypeScript.DefinitelyTyped/)
 * [Microsoft.Build](https://www.nuget.org/packages/Microsoft.Build)
