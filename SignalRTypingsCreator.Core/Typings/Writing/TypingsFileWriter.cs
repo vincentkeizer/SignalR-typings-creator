@@ -1,28 +1,41 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 
 namespace SignalRTypingsCreator.Core.Typings.Writing
 {
     public class TypingsFileWriter
     {
-        public void WriteFiles(string projectRootDir, TypeScriptHubList typeScriptHubList)
+        public IEnumerable<TypingsFile> WriteFiles(string projectRootDir, string relativeOutputDir, TypeScriptHubList typeScriptHubList)
         {
-            var typingsDir = GetTypingsDirectory(projectRootDir);
+            var typingsFiles = new List<TypingsFile>();
+
+            var typingsDir = GetTypingsDirectory(projectRootDir, relativeOutputDir);
 
             foreach (var typeScriptClass in typeScriptHubList.GetTypeScriptHubClasses())
             {
-                File.WriteAllText(typingsDir + typeScriptClass.GetTypingsFileName(), typeScriptClass.GenerateClassDefinition());
+                var fullPath = typingsDir + typeScriptClass.GetTypingsFileName();
+                File.WriteAllText(fullPath, typeScriptClass.GenerateClassDefinition());
+
+                var typingsFile = new TypingsFile(fullPath);
+                typingsFiles.Add(typingsFile);
             }
             foreach (var typeScriptModel in typeScriptHubList.GetTypeScriptModels())
             {
-                File.WriteAllText(typingsDir + typeScriptModel.GetTypingsFileName(), typeScriptModel.GenerateModelDefinition());
+                var fullPath = typingsDir + typeScriptModel.GetTypingsFileName();
+                File.WriteAllText(fullPath, typeScriptModel.GenerateModelDefinition());
+
+                var typingsFile = new TypingsFile(fullPath);
+                typingsFiles.Add(typingsFile);
             }
+
+            return typingsFiles;
         }
 
-        private string GetTypingsDirectory(string projectRootDir)
+        private string GetTypingsDirectory(string projectRootDir, string relativeOutputDir)
         {
-            EnsureDirectory($"{projectRootDir}\\Scripts");
-            EnsureDirectory($"{projectRootDir}\\Scripts\\typings");
-            return $"{projectRootDir}\\Scripts\\typings\\";
+            var fullDir = $"{projectRootDir}\\{relativeOutputDir}";
+            EnsureDirectory(fullDir);
+            return fullDir;
         }
 
         private void EnsureDirectory(string directory)

@@ -2,24 +2,40 @@
 
 A simple command line tool for creating TypeScript definition files from Hubs.
 
-```
-SignalRTypingsCreator.exe "MyAssembly" "MyProjectRootDir"
-```
+## NuGet
 
-msbuild:
+[SignalRTypingsCreator](https://www.nuget.org/packages/SignalRTypingsCreator)
 
 ```
-$(MSBuildProjectDirectory)\$(OutDir)SignalRTypingsCreator.exe "$(AssemblyName)" "$(MSBuildProjectDirectory)"
+Install-Package SignalRTypingsCreator
 ```
 
-c#
+**Note:** 
+
+Installing SignalR typings will also install signalr-1.0.d.ts. 
+Please delete this file, this will cause subsequent variable declarations errors.
+
+## Command line
+
+```
+SignalRTypingsCreator.exe "MyAssembly" "MyProjectRootDir" "ProjectFileFullPath"
+```
+
+## MsBuild
+
+```
+$(MSBuildProjectDirectory)\$(OutDir)SignalRTypingsCreator.exe "$(AssemblyName)" "$(MSBuildProjectDirectory)" "$(MSBuildProjectFullPath)"
+```
+
+## c#
 
 ```csharp
 var typingsCreator = new SignalRTypingsCreator.Core.SignalRTypingsCreator();
 typingsCreator.Generate(new SignalRTypingsCreatorConfig
 {
     AssemblyName = "MyAssembly",
-    ProjectRootDir = "MyProjectRootDir"
+    ProjectRootDir = "MyProjectRootDir",
+    ProjectFileFullPath = "FullPathToProjectFile.csproj"
 });
 ```
 ## Features
@@ -31,9 +47,11 @@ typingsCreator.Generate(new SignalRTypingsCreatorConfig
 
 ## Requirements
 
-* SignalR 2.2 (nuget package Microsoft.AspNet.SignalR.Core)
-* jQuery typings (nuget package jquery.TypeScript.DefinitelyTyped)
-* SignalR typings (nuget package signalr.TypeScript.DefinitelyTyped)
+* [SignalR 2.2](https://www.nuget.org/packages/Microsoft.AspNet.SignalR/)
+* [jQuery typings](https://www.nuget.org/packages/jquery.TypeScript.DefinitelyTyped/)
+* [SignalR typings](https://www.nuget.org/packages/signalr.TypeScript.DefinitelyTyped/)
+* [Microsoft.Build](https://www.nuget.org/packages/Microsoft.Build)
+* [Microsoft.Build.Utilities.Core](https://www.nuget.org/packages/Microsoft.Build.Utilities.Core)
 
 ## Example
 
@@ -56,7 +74,7 @@ public class Message
 
 Will result in the following typings files 
 
-\Scripts\typings\Chathub.d.ts
+\Scripts\typings\signalrhubs\Chathub.d.ts
 
 ```csharp
 interface ChatHub {
@@ -75,7 +93,7 @@ interface SignalR
 }
 ```
 
-\Scripts\typings\Message.d.ts
+\Scripts\typings\signalrhubs\Message.d.ts
 
 ```csharp
 interface Message {
@@ -88,4 +106,3 @@ interface Message {
 
 * Client is defined as any.
 * Circular references in models result in exceptions
-* Generated Definition file is not added to solution

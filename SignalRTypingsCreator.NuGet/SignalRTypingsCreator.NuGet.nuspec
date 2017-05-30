@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>SignalRTypingsCreator</id>
+    <title>SignalR Typings Creator</title>
+    <version>$version$</version>
+    <description>Creates typescript definition files (typings) for SignalR hubs on post build</description>
+    <authors>Vincent Keizer</authors>
+    <projectUrl>https://github.com/vincentkeizer/SignalR-typings-creator</projectUrl>
+    <references>
+      <reference file="SignalRTypingsCreator.Core.dll" />
+      <reference file="SignalRTypingsCreator.exe" />
+    </references>
+    <dependencies>
+      <dependency id="jquery.TypeScript.DefinitelyTyped" version="2.9.9" />
+      <dependency id="signalr.TypeScript.DefinitelyTyped" version="0.4.1" />
+      <dependency id="Microsoft.AspNet.SignalR.Core" version="2.2.2" />
+      <dependency id="Microsoft.Build" version="15.1.1012" />
+      <dependency id="Microsoft.Build.Utilities.Core" version="15.1.1012"  />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\SignalRTypingsCreator.Core.dll" target="lib/net46" />
+    <file src="bin\Release\SignalRTypingsCreator.exe" target="lib/net46" />
+    <file src="build/SignalRTypingsCreator.targets" target="build" />
+  </files>
+</package>
