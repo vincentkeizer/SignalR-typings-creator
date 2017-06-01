@@ -1,6 +1,6 @@
 # SignalR typings creator
 
-A simple command line tool for creating TypeScript definition files from Hubs.
+A simple command line tool for creating TypeScript definition files from SignalR Hubs.
 
 ## NuGet
 
@@ -10,9 +10,11 @@ A simple command line tool for creating TypeScript definition files from Hubs.
 Install-Package SignalRTypingsCreator
 ```
 
+The nuget package contains a post build target which triggers the commanad line tool for the current project.
+
 **Note:** 
 
-Installing SignalR typings will also install signalr-1.0.d.ts. 
+Installing SignalR typings nuget package will also install signalr-1.0.d.ts. 
 Please delete this file, this will cause subsequent variable declarations errors.
 
 ## Command line
@@ -40,12 +42,12 @@ typingsCreator.Generate(new SignalRTypingsCreatorConfig
 ```
 ## Features
 
-* Searches through the assembly for all Hub implementations and creates a definition file in the "Scripts/Typings" directory of the project.
+* Searches through the assembly for all Hub implementations and creates a definition file in the "Scripts/Typings/signalrhubs" directory of the project.
 * Respects the HubName and HubMethodName attributes
 * Generates definition files for all models used in the hub (arguments and return types)
 * Supports Array and IEnumerable types
 
-## Requirements
+## Dependencies
 
 * [Microsoft.AspNet.SignalR.Core 2.2](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.Core/)
 * [jQuery typings](https://www.nuget.org/packages/jquery.TypeScript.DefinitelyTyped/)
