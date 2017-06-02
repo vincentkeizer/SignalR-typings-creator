@@ -28,22 +28,15 @@ Please delete this file, this will cause subsequent variable declarations errors
 
 ### Server
 
-All Hubs in the current assembly are automatically discovered. All public methods are added to the server object of the hub.
+All Hubs (implementations of Microsoft.AspNet.SignalR.Hub) in the current assembly are automatically discovered. 
+All public methods are added to the server object of the hub.
 
 ### Client
 
 For the client of the hub, the following implementation is required.
-Create an interface which inherits from **SignalRTypingsCreator.Core.Hubs.IHubClient<T>** where T is the hub class.
+Create an interface which inherits from **SignalRTypingsCreator.Core.Hubs.IHubClient\<T>** where T is the hub class.
 All methods defined in the interface are added to the client object of the hub.
 When no interface for the hub is provided, the client is generated as type "any".
-
-## Dependencies
-
-* [Microsoft.AspNet.SignalR.Core 2.2](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.Core/)
-* [jQuery typings](https://www.nuget.org/packages/jquery.TypeScript.DefinitelyTyped/)
-* [SignalR typings](https://www.nuget.org/packages/signalr.TypeScript.DefinitelyTyped/)
-* [Microsoft.Build](https://www.nuget.org/packages/Microsoft.Build)
-* [Microsoft.Build.Utilities.Core](https://www.nuget.org/packages/Microsoft.Build.Utilities.Core)
 
 ## Example
 
@@ -129,6 +122,14 @@ typingsCreator.Generate(new SignalRTypingsCreatorConfig
     ProjectFileFullPath = "FullPathToProjectFile.csproj"
 });
 ```
+
+## Dependencies
+
+* [Microsoft.AspNet.SignalR.Core 2.2](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.Core/)
+* [jQuery typings](https://www.nuget.org/packages/jquery.TypeScript.DefinitelyTyped/)
+* [SignalR typings](https://www.nuget.org/packages/signalr.TypeScript.DefinitelyTyped/)
+* [Microsoft.Build](https://www.nuget.org/packages/Microsoft.Build)
+* [Microsoft.Build.Utilities.Core](https://www.nuget.org/packages/Microsoft.Build.Utilities.Core)
 
 ## Known issues
 
