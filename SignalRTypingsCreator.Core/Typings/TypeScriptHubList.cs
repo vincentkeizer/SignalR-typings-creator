@@ -5,14 +5,14 @@ namespace SignalRTypingsCreator.Core.Typings
 {
     public class TypeScriptHubList
     {
-        private readonly IEnumerable<TypeScriptHubClass> _typeScriptHubClasses;
+        private readonly IEnumerable<TypeScriptHub> _typeScriptHubClasses;
 
-        public TypeScriptHubList(IEnumerable<TypeScriptHubClass> typeScriptHubClasses)
+        public TypeScriptHubList(IEnumerable<TypeScriptHub> typeScriptHubClasses)
         {
             _typeScriptHubClasses = typeScriptHubClasses;
         }
 
-        public IEnumerable<TypeScriptHubClass> GetTypeScriptHubClasses()
+        public IEnumerable<TypeScriptHub> GetTypeScriptHubClasses()
         {
             return _typeScriptHubClasses;
         }

@@ -7,11 +7,11 @@ namespace SignalRTypingsCreator.Core.Typings.Creation
     {
         public TypeScriptHubList Create(HubList hubList)
         {
-            var typeScriptClasslist = new List<TypeScriptHubClass>();
+            var typeScriptClasslist = new List<TypeScriptHub>();
             var typeScriptHubClassFactory = new TypeScriptHubClassFactory();
             foreach (var hub in hubList.Hubs)
             {
-                var typeScriptClass = typeScriptHubClassFactory.Create(hub.HubType);
+                var typeScriptClass = typeScriptHubClassFactory.Create(hub.HubType, hub.HubClientType);
                 typeScriptClasslist.Add(typeScriptClass);
             }
 

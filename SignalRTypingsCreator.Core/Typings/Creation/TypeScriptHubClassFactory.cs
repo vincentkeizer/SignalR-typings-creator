@@ -4,9 +4,12 @@ namespace SignalRTypingsCreator.Core.Typings.Creation
 {
     public class TypeScriptHubClassFactory
     {
-        public TypeScriptHubClass Create(Type type)
+        public TypeScriptHub Create(Type hubType, Type hubClientType)
         {
-            return new TypeScriptHubClass(type);
+            var serverHub = new TypeScriptServerHub(hubType);
+            var clientHub = new TypeScriptClientHub(hubClientType);
+
+            return new TypeScriptHub(serverHub, clientHub);
         }
     }
 }

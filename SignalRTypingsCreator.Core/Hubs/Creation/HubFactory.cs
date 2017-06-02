@@ -4,11 +4,12 @@ namespace SignalRTypingsCreator.Core.Hubs.Creation
 {
     public class HubFactory
     {
-        public Hub Create(Type type)
+        public Hub Create(Type hubType, Type hubClientType)
         {
             return new Hub
             {
-                HubType = type
+                HubType = hubType,
+                HubClientType = hubClientType,
             };
         }
     }
