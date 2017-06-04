@@ -27,6 +27,7 @@ namespace SignalRTypingsCreator.Core.Typings
             CreateHubInterface(stringBuilder);
             AddEmptyLine(stringBuilder);
             CreateSignalRInterface(stringBuilder);
+            AddEmptyLine(stringBuilder);
             _serverHub.CreateHubServerInterface(stringBuilder);
             AddEmptyLine(stringBuilder);
             _clientHub.CreateHubClientInterface(stringBuilder);
@@ -44,7 +45,7 @@ namespace SignalRTypingsCreator.Core.Typings
         private void CreateHubInterface(StringBuilder stringBuilder)
         {
             stringBuilder.AppendLine($"interface {_serverHub.GetHubName()} {{");
-            stringBuilder.AppendLine($"     server:{_serverHub.GetHubServerTypeName()}");
+            stringBuilder.AppendLine($"     server:{_serverHub.GetHubServerTypeName()},");
             stringBuilder.AppendLine($"     client:{_clientHub.GetHubClientTypeName()}");
             stringBuilder.AppendLine("}");
         }
