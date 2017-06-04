@@ -36,8 +36,8 @@ namespace SignalRTypingsCreator.Core.Typings
         public IEnumerable<TypeScriptModel> GetModels()
         {
             var modelList = new List<TypeScriptModel>();
-            modelList.AddRange(_serverHub.GetMethods().SelectMany(m => m.GetModels()));
-            modelList.AddRange(_clientHub.GetMethods().SelectMany(m => m.GetModels()));
+            modelList.AddRange(_serverHub.GetMethodList().GetModels());
+            modelList.AddRange(_clientHub.GetMethodList().GetModels());
             return modelList;
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using Microsoft.AspNet.SignalR.Hubs;
@@ -9,34 +10,24 @@ namespace SignalRTypingsCreator.Core.Typings
     public class TypeScriptServerHub
     {
         private readonly Type _hubType;
-        
+        private readonly TypeScriptMethodList _methodList;
+
         public TypeScriptServerHub(Type hubType)
         {
             _hubType = hubType;
+            _methodList = new TypeScriptMethodList(hubType);
         }
 
         public void CreateHubServerInterface(StringBuilder stringBuilder)
         {
-            stringBuilder.AppendLine($"interface {GetHubName()}Server {{");
-            foreach (var method in GetMethods())
-            {
-                stringBuilder.AppendLine($"     {method.GenerateServerMethodDefinition()}");
-            }
+            stringBuilder.AppendLine($"interface {GetHubServerTypeName()} {{");
+            _methodList.CreateTypeScriptMethods(stringBuilder);
             stringBuilder.AppendLine("}");
         }
 
-        public IEnumerable<TypeScriptMethod> GetMethods()
+        public TypeScriptMethodList GetMethodList()
         {
-            var methods = new List<TypeScriptMethod>();
-            foreach (var method in _hubType.GetMethods(BindingFlags.Public | BindingFlags.Instance))
-            {
-                if (method.DeclaringType == _hubType)
-                {
-                    var typeScriptMethod = new TypeScriptMethod(method);
-                    methods.Add(typeScriptMethod);
-                }
-            }
-            return methods;
+            return _methodList;
         }
 
         public string GetHubName()

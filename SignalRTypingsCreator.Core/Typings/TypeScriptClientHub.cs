@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using Microsoft.AspNet.SignalR.Hubs;
 using SignalRTypingsCreator.Core.Hubs;
@@ -11,10 +9,12 @@ namespace SignalRTypingsCreator.Core.Typings
     public class TypeScriptClientHub
     {
         private readonly Type _clientHubType;
+        private readonly TypeScriptMethodList _methodList;
 
         public TypeScriptClientHub(Type clientHubType)
         {
             _clientHubType = clientHubType;
+            _methodList = new TypeScriptMethodList(_clientHubType);
         }
 
         public void CreateHubClientInterface(StringBuilder stringBuilder)
@@ -25,30 +25,13 @@ namespace SignalRTypingsCreator.Core.Typings
             }
 
             stringBuilder.AppendLine($"interface {GetHubName()}Client {{");
-            foreach (var method in GetMethods())
-            {
-                stringBuilder.AppendLine($"     {method.GenerateServerMethodDefinition()}");
-            }
+            _methodList.CreateTypeScriptMethods(stringBuilder);
             stringBuilder.AppendLine("}");
         }
 
-        public IEnumerable<TypeScriptMethod> GetMethods()
+        public TypeScriptMethodList GetMethodList()
         {
-            if (_clientHubType == null)
-            {
-                return new List<TypeScriptMethod>();
-            }
-
-            var methods = new List<TypeScriptMethod>();
-            foreach (var method in _clientHubType.GetMethods(BindingFlags.Public | BindingFlags.Instance))
-            {
-                if (method.DeclaringType == _clientHubType)
-                {
-                    var typeScriptMethod = new TypeScriptMethod(method);
-                    methods.Add(typeScriptMethod);
-                }
-            }
-            return methods;
+            return _methodList;
         }
 
         public string GetHubClientTypeName()
@@ -68,7 +51,7 @@ namespace SignalRTypingsCreator.Core.Typings
                 var hubNameAttributeValue = (HubNameAttribute)hubNameattribute.GetValue(0);
                 return hubNameAttributeValue.HubName;
             }
-            
+
             return hubType.Name;
         }
     }

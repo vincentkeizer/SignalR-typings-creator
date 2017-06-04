@@ -10,7 +10,7 @@ A simple command line tool for creating TypeScript definition files from SignalR
 Install-Package SignalRTypingsCreator
 ```
 
-The nuget package contains a post build target which triggers the commanad line tool for the current project.
+The nuget package contains a post build target which triggers the command line tool for the current project.
 
 **Note:** 
 
@@ -130,6 +130,7 @@ typingsCreator.Generate(new SignalRTypingsCreatorConfig
 * [SignalR typings](https://www.nuget.org/packages/signalr.TypeScript.DefinitelyTyped/)
 * [Microsoft.Build](https://www.nuget.org/packages/Microsoft.Build)
 * [Microsoft.Build.Utilities.Core](https://www.nuget.org/packages/Microsoft.Build.Utilities.Core)
+* [System.Collections.Immutable](https://www.nuget.org/packages/System.Collections.Immutable)
 
 ## Known issues
 
