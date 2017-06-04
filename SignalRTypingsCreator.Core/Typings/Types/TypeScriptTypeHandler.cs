@@ -18,6 +18,8 @@ namespace SignalRTypingsCreator.Core.Typings.Types
                 case "Double":
                 case "Single":
                     return "decimal";
+                case "Boolean":
+                    return "boolean";
                 case "Void":
                     return "void";
                 default:
@@ -79,7 +81,7 @@ namespace SignalRTypingsCreator.Core.Typings.Types
 
         private bool IsModel(Type type)
         {
-            return !type.IsValueType;
+            return !type.IsValueType && !(type.IsGenericType && !IsCollection(type));
         }
     }
 }

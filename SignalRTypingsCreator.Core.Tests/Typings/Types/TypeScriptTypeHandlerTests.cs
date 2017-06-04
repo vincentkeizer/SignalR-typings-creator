@@ -64,6 +64,17 @@ namespace SignalRTypingsCreator.Core.Tests.Typings.Types
         }
 
         [TestMethod]
+        public void WhenTypeIsBoolean_ReturnsTypeScriptBooelanType()
+        {
+            var typeScriptTypeHandler = new TypeScriptTypeHandler();
+            Type type = typeof(bool);
+
+            var typeScriptType = typeScriptTypeHandler.GetTypeScriptType(type);
+
+            Assert.AreEqual("boolean", typeScriptType);
+        }
+
+        [TestMethod]
         public void WhenTypeIsArrayOfInts_ReturnsTypeScriptNumberArrayType()
         {
             var typeScriptTypeHandler = new TypeScriptTypeHandler();
