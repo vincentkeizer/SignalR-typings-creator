@@ -11,14 +11,14 @@ namespace SignalRTypingsCreator.Core.Typings
     public class TypeScriptClientHub
     {
         private readonly Type _clientHubType;
+        private readonly string _hubName;
         private readonly TypeScriptMethodList _methodList;
-        private readonly HubClassNameResolver _hubClassNameResolver;
 
-        public TypeScriptClientHub(Type clientHubType)
+        public TypeScriptClientHub(Type clientHubType, string hubName)
         {
             _clientHubType = clientHubType;
+            _hubName = hubName;
             _methodList = new TypeScriptMethodList(_clientHubType);
-            _hubClassNameResolver = new HubClassNameResolver();
         }
 
         public void CreateHubClientInterface(StringBuilder stringBuilder)
@@ -28,7 +28,7 @@ namespace SignalRTypingsCreator.Core.Typings
                 return;
             }
 
-            stringBuilder.AppendLine($"interface {GetHubName()}Client {{");
+            stringBuilder.AppendLine($"interface {GetHubClientTypeName()} {{");
             _methodList.GenerateMethodDefinitions(stringBuilder);
             stringBuilder.AppendLine("}");
         }
@@ -42,14 +42,7 @@ namespace SignalRTypingsCreator.Core.Typings
         {
             return _clientHubType == null
                                         ? "any"
-                                        : $"{GetHubName()}Client";
-        }
-
-        private string GetHubName()
-        {
-            var hubType = _clientHubType.GetInterfaces().First(i => i.GetGenericTypeDefinition() == typeof(IHubClient<>)).GenericTypeArguments.First();
-
-            return _hubClassNameResolver.GetHubClassName(hubType);
+                                        : $"{_hubName}Client";
         }
     }
 }

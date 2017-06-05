@@ -32,6 +32,11 @@ namespace SignalRTypingsCreator.Core.Hubs.Finding
 
         private Type GetClientHub(Assembly assembly, Type hubType)
         {
+            if (hubType.BaseType.IsGenericType)
+            {
+                return hubType.BaseType.GetGenericArguments().First();
+            }
+
             return assembly.GetTypes().FirstOrDefault(t => t.IsInterface 
                                                            && t.GetInterfaces().Any(i => i.IsGenericType 
                                                                                          && i.GetGenericTypeDefinition() == typeof(IHubClient<>)

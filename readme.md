@@ -15,6 +15,7 @@ The nuget package contains a post build target which triggers the command line t
 ## Features
 
 * Searches through the assembly for all Hub implementations and creates a definition file in the "Scripts/Typings/signalrhubs" directory of the project.
+* Supports Hub and Hub\<T> implementations
 * Respects the HubName and HubMethodName attributes
 * Generates definition files for all models used in the hub (arguments and return types)
 * Supports Array and IEnumerable types
@@ -28,9 +29,11 @@ All public methods are added to the server object of the hub.
 
 ### Client
 
-For the client of the hub, the following implementation is required.
-Create an interface which inherits from **SignalRTypingsCreator.Core.Hubs.IHubClient\<T>** where T is the hub class.
+For the client of the hub, there are two possibilities:
+* Implement the Hub\<T> class. A client interface will be created based on type T.
+* Create an interface which inherits from **SignalRTypingsCreator.Core.Hubs.IHubClient\<T>** where T is the hub implementation class.
 All methods defined in the interface are added to the client object of the hub.
+
 When no interface for the hub is provided, the client is generated as type "any".
 
 ## Example
