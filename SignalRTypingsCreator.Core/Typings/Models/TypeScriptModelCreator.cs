@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Reflection;
+using SignalRTypingsCreator.Core.Typings.TypeConversion;
 
-namespace SignalRTypingsCreator.Core.Typings.Types
+namespace SignalRTypingsCreator.Core.Typings.Models
 {
     public class TypeScriptModelCreator
     {
@@ -13,25 +13,22 @@ namespace SignalRTypingsCreator.Core.Typings.Types
             _typeScriptTypeHandler = new TypeScriptTypeHandler();
         }
 
-        public IEnumerable<TypeScriptModel> CreateModels(MethodInfo methodInfo)
+        public TypeScriptModelList CreateModels(MethodInfo methodInfo)
         {
-            var models = new List<TypeScriptModel>();
+            var modelList = new TypeScriptModelList();
+
             var returnTypeModel = CreateTypeScriptModel(methodInfo.ReturnType);
-            if (returnTypeModel != null)
-            {
-                models.Add(returnTypeModel);
-            }
+            modelList.Add(returnTypeModel);
+            
             var parameters = methodInfo.GetParameters();
             for (var i = 0; i < parameters.Length; i++)
             {
                 var parameter = parameters[i];
                 var parameterModel = CreateTypeScriptModel(parameter.ParameterType);
-                if (parameterModel != null)
-                {
-                    models.Add(parameterModel);
-                }
+                modelList.Add(parameterModel);
             }
-            return models;
+
+            return modelList;
         }
 
         public TypeScriptModel CreateModel(PropertyInfo property)

@@ -53,8 +53,8 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Typings\Types\DummyClass.cs" />
-    <Compile Include="Typings\Types\TypeScriptTypeHandlerTests.cs" />
+    <Compile Include="Typings\TypeConversion\DummyClass.cs" />
+    <Compile Include="Typings\TypeConversion\TypeScriptTypeHandlerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

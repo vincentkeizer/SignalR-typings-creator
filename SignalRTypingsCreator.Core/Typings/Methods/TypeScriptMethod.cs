@@ -1,27 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
-using Microsoft.AspNet.SignalR.Hubs;
-using SignalRTypingsCreator.Core.Typings.Types;
+using SignalRTypingsCreator.Core.Typings.Models;
+using SignalRTypingsCreator.Core.Typings.Naming;
+using SignalRTypingsCreator.Core.Typings.TypeConversion;
 
-namespace SignalRTypingsCreator.Core.Typings
+namespace SignalRTypingsCreator.Core.Typings.Methods
 {
     public class TypeScriptMethod
     {
         private readonly MethodInfo _method;
         private readonly TypeScriptTypeHandler _typeScriptTypeHandler;
         private readonly TypeScriptModelCreator _typeScriptModelCreator;
+        private readonly HubMethodNameResolver _hubMethodNameResolver;
 
         public TypeScriptMethod(MethodInfo method)
         {
-            this._method = method;
+            _method = method;
             _typeScriptModelCreator = new TypeScriptModelCreator();
             _typeScriptTypeHandler = new TypeScriptTypeHandler();
-
+            _hubMethodNameResolver = new HubMethodNameResolver();
         }
 
-        public string GenerateServerMethodDefinition()
+        public string GenerateMethodDefinition()
         {
             StringBuilder stringBuilder = new StringBuilder();
 
@@ -35,20 +36,16 @@ namespace SignalRTypingsCreator.Core.Typings
             return stringBuilder.ToString();
         }
 
-        public IEnumerable<TypeScriptModel> GetModels()
+        public void AddModelsToCollection(TypeScriptModelList modelCollection)
         {
-            return _typeScriptModelCreator.CreateModels(_method);
+            var model = _typeScriptModelCreator.CreateModels(_method);
+            modelCollection.Add(model);
         }
 
         private string GetName()
         {
-            var methodName = _method.Name;
-            var hubMethodNameAttribute = _method.GetCustomAttributes(typeof(HubMethodNameAttribute), false);
-            if (hubMethodNameAttribute.Length > 0)
-            {
-                var hubMethodNameValue = (HubMethodNameAttribute)hubMethodNameAttribute.GetValue(0);
-                methodName = hubMethodNameValue.MethodName;
-            }
+            var methodName = _hubMethodNameResolver.GetHubMethodName(_method);
+
             return Char.ToLowerInvariant(methodName[0]) + methodName.Substring(1);
         }
 

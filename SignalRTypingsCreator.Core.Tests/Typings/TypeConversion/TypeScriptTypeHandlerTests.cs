@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SignalRTypingsCreator.Core.Typings.Types;
+using SignalRTypingsCreator.Core.Typings.TypeConversion;
 
-namespace SignalRTypingsCreator.Core.Tests.Typings.Types
+namespace SignalRTypingsCreator.Core.Tests.Typings.TypeConversion
 {
     [TestClass]
     public class TypeScriptTypeHandlerTests

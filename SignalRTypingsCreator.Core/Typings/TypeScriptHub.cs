@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
+using SignalRTypingsCreator.Core.Typings.Models;
 
 namespace SignalRTypingsCreator.Core.Typings
 {
@@ -34,12 +33,10 @@ namespace SignalRTypingsCreator.Core.Typings
             return stringBuilder.ToString();
         }
 
-        public IEnumerable<TypeScriptModel> GetModels()
+        public void AddModelsToCollection(TypeScriptModelList modelCollection)
         {
-            var modelList = new List<TypeScriptModel>();
-            modelList.AddRange(_serverHub.GetMethodList().GetModels());
-            modelList.AddRange(_clientHub.GetMethodList().GetModels());
-            return modelList;
+            _serverHub.AddModelsToCollection(modelCollection);
+            _clientHub.AddModelsToCollection(modelCollection);
         }
 
         private void CreateHubInterface(StringBuilder stringBuilder)

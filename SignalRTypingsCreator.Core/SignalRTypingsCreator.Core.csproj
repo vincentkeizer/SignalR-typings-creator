@@ -34,16 +34,16 @@
     <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.2\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Build, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Build.15.1.1012\lib\net46\Microsoft.Build.dll</HintPath>
+    <Reference Include="Microsoft.Build, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Build.14.3.0\lib\net45\Microsoft.Build.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Build.Framework, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Build.Framework.15.1.1012\lib\net46\Microsoft.Build.Framework.dll</HintPath>
+    <Reference Include="Microsoft.Build.Framework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Build.Framework.14.3.0\lib\net45\Microsoft.Build.Framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Build.Utilities.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Build.Utilities.Core.15.1.1012\lib\net46\Microsoft.Build.Utilities.Core.dll</HintPath>
+    <Reference Include="Microsoft.Build.Utilities.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Build.Utilities.Core.14.3.0\lib\net45\Microsoft.Build.Utilities.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -84,15 +84,20 @@
     <Compile Include="SignalRTypingsCreatorConfig.cs" />
     <Compile Include="Typings\Creation\TypeScriptHubClassFactory.cs" />
     <Compile Include="Typings\Creation\TypeScriptHubListFactory.cs" />
+    <Compile Include="Typings\Models\TypeScriptModelList.cs" />
+    <Compile Include="Typings\Naming\HubClassNameResolver.cs" />
+    <Compile Include="Typings\Naming\HubMethodNameResolver.cs" />
+    <Compile Include="Typings\Properties\TypeScriptProperty.cs" />
+    <Compile Include="Typings\Properties\TypeScriptPropertyList.cs" />
     <Compile Include="Typings\TypeScriptClientHub.cs" />
     <Compile Include="Typings\TypeScriptHub.cs" />
     <Compile Include="Typings\TypeScriptHubList.cs" />
-    <Compile Include="Typings\TypeScriptMethodList.cs" />
+    <Compile Include="Typings\Methods\TypeScriptMethodList.cs" />
     <Compile Include="Typings\TypeScriptServerHub.cs" />
-    <Compile Include="Typings\TypeScriptMethod.cs" />
-    <Compile Include="Typings\TypeScriptModel.cs" />
-    <Compile Include="Typings\Types\TypeScriptModelCreator.cs" />
-    <Compile Include="Typings\Types\TypeScriptTypeHandler.cs" />
+    <Compile Include="Typings\Methods\TypeScriptMethod.cs" />
+    <Compile Include="Typings\Models\TypeScriptModel.cs" />
+    <Compile Include="Typings\Models\TypeScriptModelCreator.cs" />
+    <Compile Include="Typings\TypeConversion\TypeScriptTypeHandler.cs" />
     <Compile Include="Typings\Writing\ProjectFileUpdater.cs" />
     <Compile Include="Typings\Writing\TypingsFile.cs" />
     <Compile Include="Typings\Writing\TypingsFileWriter.cs" />

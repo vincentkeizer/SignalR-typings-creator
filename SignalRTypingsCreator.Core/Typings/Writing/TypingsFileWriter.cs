@@ -8,24 +8,25 @@ namespace SignalRTypingsCreator.Core.Typings.Writing
         public IEnumerable<TypingsFile> WriteFiles(string projectRootDir, string relativeOutputDir, TypeScriptHubList typeScriptHubList)
         {
             var typingsFiles = new List<TypingsFile>();
-
             var typingsDir = GetTypingsDirectory(projectRootDir, relativeOutputDir);
 
             foreach (var typeScriptClass in typeScriptHubList.GetTypeScriptHubClasses())
             {
                 var fullPath = typingsDir + typeScriptClass.GetTypingsFileName();
-                File.WriteAllText(fullPath, typeScriptClass.GenerateClassDefinition());
+                AddFileToTypingsFileList(fullPath, typingsFiles);
 
-                var typingsFile = new TypingsFile(fullPath);
-                typingsFiles.Add(typingsFile);
+                var fileContents = typeScriptClass.GenerateClassDefinition();
+                WriteFile(fullPath, fileContents);
             }
-            foreach (var typeScriptModel in typeScriptHubList.GetTypeScriptModels())
+
+            var typeScriptModelList = typeScriptHubList.GetTypeScriptModels();
+            foreach (var typeScriptModel in typeScriptModelList.GetModels())
             {
                 var fullPath = typingsDir + typeScriptModel.GetTypingsFileName();
-                File.WriteAllText(fullPath, typeScriptModel.GenerateModelDefinition());
+                AddFileToTypingsFileList(fullPath, typingsFiles);
 
-                var typingsFile = new TypingsFile(fullPath);
-                typingsFiles.Add(typingsFile);
+                var fileContents = typeScriptModel.GenerateModelDefinition();
+                WriteFile(fullPath, fileContents);
             }
 
             return typingsFiles;
@@ -44,6 +45,22 @@ namespace SignalRTypingsCreator.Core.Typings.Writing
             {
                 Directory.CreateDirectory(directory);
             }
+        }
+
+        private void AddFileToTypingsFileList(string fullPath, List<TypingsFile> typingsFiles)
+        {
+            var typingsFile = new TypingsFile(fullPath);
+            typingsFiles.Add(typingsFile);
+        }
+
+        private void WriteFile(string fullPath, string fileContents)
+        {
+            if (File.Exists(fullPath) && File.ReadAllText(fullPath) == fileContents)
+            {
+                return;
+            }
+                
+            File.WriteAllText(fullPath, fileContents);
         }
     }
 }

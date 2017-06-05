@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using SignalRTypingsCreator.Core.Typings.Models;
 
 namespace SignalRTypingsCreator.Core.Typings
 {
@@ -17,16 +17,14 @@ namespace SignalRTypingsCreator.Core.Typings
             return _typeScriptHubClasses;
         }
 
-        public IEnumerable<TypeScriptModel> GetTypeScriptModels()
+        public TypeScriptModelList GetTypeScriptModels()
         {
-            var fullCollectionOfModels = new List<TypeScriptModel>();
-            var hubModels = _typeScriptHubClasses.SelectMany(m => m.GetModels());
-            fullCollectionOfModels.AddRange(hubModels);
-            foreach (var model in hubModels)
+            var modelList = new TypeScriptModelList();
+            foreach (var typeScriptHub in _typeScriptHubClasses)
             {
-                fullCollectionOfModels.AddRange(model.GetModels());
+                typeScriptHub.AddModelsToCollection(modelList);
             }
-            return fullCollectionOfModels.Distinct();
+            return modelList;
         }
     }
 }

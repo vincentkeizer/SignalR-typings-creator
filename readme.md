@@ -12,11 +12,6 @@ Install-Package SignalRTypingsCreator
 
 The nuget package contains a post build target which triggers the command line tool for the current project.
 
-**Note:** 
-
-Installing SignalR typings nuget package will also install signalr-1.0.d.ts. 
-Please delete this file, this will cause subsequent variable declarations errors.
-
 ## Features
 
 * Searches through the assembly for all Hub implementations and creates a definition file in the "Scripts/Typings/signalrhubs" directory of the project.
@@ -132,6 +127,9 @@ typingsCreator.Generate(new SignalRTypingsCreatorConfig
 * [Microsoft.Build.Utilities.Core](https://www.nuget.org/packages/Microsoft.Build.Utilities.Core)
 * [System.Collections.Immutable](https://www.nuget.org/packages/System.Collections.Immutable)
 
-## Known issues
+## Common issues
 
-* Circular references in models result in exceptions
+* Installing SignalR typings nuget package will also install signalr-1.0.d.ts. 
+Please delete this file, this will cause subsequent variable declarations errors.
+* When the error "Could not load file or assembly 'System.Collections.Immutable, Version=1.2.1.0" occurs, please update the NuGet package "Microsoft.Net.Compilers" to at least 1.1.0.
+Version 1.0.0 forces an old version of the "System.Collections.Immutable" assembly to be used, which can override the "System.Collections.Immutable" nuget package version. 

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-using Microsoft.AspNet.SignalR.Hubs;
 using SignalRTypingsCreator.Core.Hubs;
+using SignalRTypingsCreator.Core.Typings.Methods;
+using SignalRTypingsCreator.Core.Typings.Models;
+using SignalRTypingsCreator.Core.Typings.Naming;
 
 namespace SignalRTypingsCreator.Core.Typings
 {
@@ -10,11 +12,13 @@ namespace SignalRTypingsCreator.Core.Typings
     {
         private readonly Type _clientHubType;
         private readonly TypeScriptMethodList _methodList;
+        private readonly HubClassNameResolver _hubClassNameResolver;
 
         public TypeScriptClientHub(Type clientHubType)
         {
             _clientHubType = clientHubType;
             _methodList = new TypeScriptMethodList(_clientHubType);
+            _hubClassNameResolver = new HubClassNameResolver();
         }
 
         public void CreateHubClientInterface(StringBuilder stringBuilder)
@@ -25,13 +29,13 @@ namespace SignalRTypingsCreator.Core.Typings
             }
 
             stringBuilder.AppendLine($"interface {GetHubName()}Client {{");
-            _methodList.CreateTypeScriptMethods(stringBuilder);
+            _methodList.GenerateMethodDefinitions(stringBuilder);
             stringBuilder.AppendLine("}");
         }
 
-        public TypeScriptMethodList GetMethodList()
+        public void AddModelsToCollection(TypeScriptModelList modelCollection)
         {
-            return _methodList;
+            _methodList.AddModelsToCollection(modelCollection);
         }
 
         public string GetHubClientTypeName()
@@ -45,14 +49,7 @@ namespace SignalRTypingsCreator.Core.Typings
         {
             var hubType = _clientHubType.GetInterfaces().First(i => i.GetGenericTypeDefinition() == typeof(IHubClient<>)).GenericTypeArguments.First();
 
-            var hubNameattribute = hubType.GetCustomAttributes(typeof(HubNameAttribute), false);
-            if (hubNameattribute.Length > 0)
-            {
-                var hubNameAttributeValue = (HubNameAttribute)hubNameattribute.GetValue(0);
-                return hubNameAttributeValue.HubName;
-            }
-
-            return hubType.Name;
+            return _hubClassNameResolver.GetHubClassName(hubType);
         }
     }
 }

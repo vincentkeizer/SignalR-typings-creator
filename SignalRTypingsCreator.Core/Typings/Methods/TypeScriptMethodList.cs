@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Text;
+using SignalRTypingsCreator.Core.Typings.Models;
 
-namespace SignalRTypingsCreator.Core.Typings
+namespace SignalRTypingsCreator.Core.Typings.Methods
 {
     public class TypeScriptMethodList
     {
@@ -17,26 +17,29 @@ namespace SignalRTypingsCreator.Core.Typings
             FindMethods();
         }
 
-        public void CreateTypeScriptMethods(StringBuilder stringBuilder)
+        public void GenerateMethodDefinitions(StringBuilder stringBuilder)
         {
             var totalNumberOfMethods = _methods.Count;
             var i = 1;
             foreach (var method in _methods)
             {
-                var lineSeparator = "";
+                var lineEnd = "";
                 if (i < totalNumberOfMethods)
                 {
-                    lineSeparator = ",";
+                    lineEnd = ",";
                 }
                 i++;
 
-                stringBuilder.AppendLine($"     {method.GenerateServerMethodDefinition()}{lineSeparator}");
+                stringBuilder.AppendLine($"     {method.GenerateMethodDefinition()}{lineEnd}");
             }
         }
 
-        public IEnumerable<TypeScriptModel> GetModels()
+        public void AddModelsToCollection(TypeScriptModelList modelCollection)
         {
-            return _methods.SelectMany(m => m.GetModels());
+            foreach (var method in _methods)
+            {
+                method.AddModelsToCollection(modelCollection);
+            }
         }
 
         private void FindMethods()

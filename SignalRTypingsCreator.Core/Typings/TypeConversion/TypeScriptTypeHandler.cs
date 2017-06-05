@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-namespace SignalRTypingsCreator.Core.Typings.Types
+namespace SignalRTypingsCreator.Core.Typings.TypeConversion
 {
     public class TypeScriptTypeHandler
     {
