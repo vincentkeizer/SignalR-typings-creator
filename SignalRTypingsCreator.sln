@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.12
+VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRTypingsCreator", "SignalRTypingsCreator\SignalRTypingsCreator.csproj", "{18CB6BB1-8934-4760-9FE8-E59A8FF2BC22}"
 EndProject
@@ -17,6 +17,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRTypingsCreator.Core.Tests", "SignalRTypingsCreator.Core.Tests\SignalRTypingsCreator.Core.Tests.csproj", "{68C2213D-CB5F-42F5-A694-3876F94CAD52}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRTypingsCreator.NuGet", "SignalRTypingsCreator.NuGet\SignalRTypingsCreator.NuGet.csproj", "{E831A837-431A-4431-B757-747A8CB47B9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRTypingsCreator.DotNet46ProjectFileUpdater", "SignalRTypingsCreator.DotNet46ProjectFileUpdater\SignalRTypingsCreator.DotNet46ProjectFileUpdater.csproj", "{9F1FB75A-7CB9-4251-959B-07854FB451E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +46,10 @@ Global
 		{E831A837-431A-4431-B757-747A8CB47B9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E831A837-431A-4431-B757-747A8CB47B9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E831A837-431A-4431-B757-747A8CB47B9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F1FB75A-7CB9-4251-959B-07854FB451E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F1FB75A-7CB9-4251-959B-07854FB451E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F1FB75A-7CB9-4251-959B-07854FB451E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F1FB75A-7CB9-4251-959B-07854FB451E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

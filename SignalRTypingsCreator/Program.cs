@@ -18,8 +18,7 @@ namespace SignalRTypingsCreator
             var config = new SignalRTypingsCreatorConfig
             {
                 AssemblyName = args[0],
-                ProjectRootDir = args[1],
-                ProjectFileFullPath = args[2]
+                ProjectRootDir = args[1]
             };
             return config;
         }

@@ -12,6 +12,12 @@ Install-Package SignalRTypingsCreator
 
 The nuget package contains a post build target which triggers the command line tool for the current project.
 
+As of 0.4.0, the files aren't automatically added to the project anymore.
+To add files to dotnet 4.6 projects, please install the following package:
+
+[SignalRTypingsCreator.DotNet46ProjectFileUpdater](https://www.nuget.org/packages/SignalRTypingsCreator.DotNet46ProjectFileUpdater)
+
+
 ## Features
 
 * Searches through the assembly for all Hub implementations and creates a definition file in the "Scripts/Typings/signalrhubs" directory of the project.

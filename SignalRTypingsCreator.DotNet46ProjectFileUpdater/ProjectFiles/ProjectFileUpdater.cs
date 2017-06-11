@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using SignalRTypingsCreator.Core.Typings.Writing;
 
-namespace SignalRTypingsCreator.Core.Typings.Writing
+namespace SignalRTypingsCreator.DotNet46ProjectFileUpdater.ProjectFiles
 {
     public class ProjectFileUpdater
     {
@@ -32,7 +33,7 @@ namespace SignalRTypingsCreator.Core.Typings.Writing
                 project.Save();
             }
         }
-
+        
         private string GetRelativePath(TypingsFile file)
         {
             var relativePath = file.Path.Replace(_projectRootDir, "");

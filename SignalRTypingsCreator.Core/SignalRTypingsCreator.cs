@@ -27,11 +27,7 @@ namespace SignalRTypingsCreator.Core
             var typeScriptClasses = generator.Create(hubs);
 
             var writer = new TypingsFileWriter();
-            var typingsFiles = writer.WriteFiles(config.ProjectRootDir, config.RelativeOutputDir, typeScriptClasses);
-
-            var projectUpdater = new ProjectFileUpdater(config.ProjectRootDir, config.ProjectFileFullPath);
-            projectUpdater.Add(typingsFiles);
-
+            writer.WriteFiles(config.ProjectRootDir, config.RelativeOutputDir, typeScriptClasses);
         }
     }
 }

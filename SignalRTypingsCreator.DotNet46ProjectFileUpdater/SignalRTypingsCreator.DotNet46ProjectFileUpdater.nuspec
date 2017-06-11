@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>SignalRTypingsCreator.DotNet46ProjectFileUpdater</id>
+    <title>SignalR Typings Creator DotNet 4.6 Project File Updater</title>
+    <version>$version$</version>
+    <description>Automatically adds the typings created by the SignalRTypingsCreator to DotNet 4.6 project files.</description>
+    <authors>Vincent Keizer</authors>
+    <projectUrl>https://github.com/vincentkeizer/SignalR-typings-creator</projectUrl>
+    <references>
+      <reference file="SignalRTypingsCreator.DotNet46ProjectFileUpdater.exe" />
+    </references>
+    <dependencies>
+      <dependency id="Microsoft.Build" version="15.1.1012" />
+      <dependency id="Microsoft.Build.Utilities.Core" version="15.1.1012"  />
+      <dependency id="System.Collections.Immutable" version="1.3.1"  />
+      <dependency id="SignalRTypingsCreator" version="$version$"  />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\SignalRTypingsCreator.DotNet46ProjectFileUpdater.exe" target="lib/net46" />
+    <file src="build/SignalRTypingsCreator.DotNet46ProjectFileUpdater.targets" target="build" />
+  </files>
+</package>
