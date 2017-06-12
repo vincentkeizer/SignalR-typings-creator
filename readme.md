@@ -13,10 +13,13 @@ Install-Package SignalRTypingsCreator
 The nuget package contains a post build target which triggers the command line tool for the current project.
 
 As of 0.4.0, the files aren't automatically added to the project anymore.
-To add files to dotnet 4.6 projects, please install the following package:
+To add files to dotnet framework 4.6 projects, please install the following package:
 
 [SignalRTypingsCreator.DotNet46ProjectFileUpdater](https://www.nuget.org/packages/SignalRTypingsCreator.DotNet46ProjectFileUpdater)
 
+```
+Install-Package SignalRTypingsCreator.DotNet46ProjectFileUpdater
+```
 
 ## Features
 
@@ -105,36 +108,57 @@ interface Message {
 
 ## Command line
 
+### SignalRTypingsCreator
+
 ```
-SignalRTypingsCreator.exe "MyAssembly" "MyProjectRootDir" "ProjectFileFullPath"
+SignalRTypingsCreator.exe "MyAssembly" "MyProjectRootDir"
+```
+
+### SignalRTypingsCreator.DotNet46ProjectFileUpdater
+
+```
+SignalRTypingsCreator.DotNet46ProjectFileUpdater.exe "MyProjectRootDir" "ProjectFileFullPath"
 ```
 
 ## MsBuild
 
+### SignalRTypingsCreator
+
 ```
-$(MSBuildProjectDirectory)\$(OutDir)SignalRTypingsCreator.exe "$(AssemblyName)" "$(MSBuildProjectDirectory)" "$(MSBuildProjectFullPath)"
+$(MSBuildProjectDirectory)\$(OutDir)SignalRTypingsCreator.exe "$(AssemblyName)" "$(MSBuildProjectDirectory)"
 ```
 
-## c#
+### SignalRTypingsCreator.DotNet46ProjectFileUpdater
+
+```
+$(MSBuildProjectDirectory)\$(OutDir)SignalRTypingsCreator.DotNet46ProjectFileUpdater.exe "$(MSBuildProjectDirectory)" "$(MSBuildProjectFullPath)"
+```
+
+## C#
 
 ```csharp
 var typingsCreator = new SignalRTypingsCreator.Core.SignalRTypingsCreator();
 typingsCreator.Generate(new SignalRTypingsCreatorConfig
 {
     AssemblyName = "MyAssembly",
-    ProjectRootDir = "MyProjectRootDir",
-    ProjectFileFullPath = "FullPathToProjectFile.csproj"
+    ProjectRootDir = "MyProjectRootDir"
 });
 ```
 
 ## Dependencies
 
+### SignalRTypingsCreator
+
 * [Microsoft.AspNet.SignalR.Core 2.2](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.Core/)
 * [jQuery typings](https://www.nuget.org/packages/jquery.TypeScript.DefinitelyTyped/)
 * [SignalR typings](https://www.nuget.org/packages/signalr.TypeScript.DefinitelyTyped/)
+
+### SignalRTypingsCreator.DotNet46ProjectFileUpdater
+
 * [Microsoft.Build](https://www.nuget.org/packages/Microsoft.Build)
 * [Microsoft.Build.Utilities.Core](https://www.nuget.org/packages/Microsoft.Build.Utilities.Core)
 * [System.Collections.Immutable](https://www.nuget.org/packages/System.Collections.Immutable)
+* [SignalRTypingsCreator](https://www.nuget.org/packages/SignalRTypingsCreator)
 
 ## Common issues
 
