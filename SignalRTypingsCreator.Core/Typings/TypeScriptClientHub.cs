@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Linq;
 using System.Text;
-using SignalRTypingsCreator.Core.Hubs;
-using SignalRTypingsCreator.Core.Typings.Methods;
-using SignalRTypingsCreator.Core.Typings.Models;
 using SignalRTypingsCreator.Core.Typings.Naming;
+using TypingsCreator.Core.Methods;
+using TypingsCreator.Core.Models;
 
 namespace SignalRTypingsCreator.Core.Typings
 {
-    public class TypeScriptClientHub
+    public class TypeScriptClientHub : IModelProvider
     {
         private readonly Type _clientHubType;
         private readonly string _hubName;
@@ -18,7 +16,7 @@ namespace SignalRTypingsCreator.Core.Typings
         {
             _clientHubType = clientHubType;
             _hubName = hubName;
-            _methodList = new TypeScriptMethodList(_clientHubType);
+            _methodList = new TypeScriptMethodList(_clientHubType, new HubMethodNameResolver());
         }
 
         public void CreateHubClientInterface(StringBuilder stringBuilder)

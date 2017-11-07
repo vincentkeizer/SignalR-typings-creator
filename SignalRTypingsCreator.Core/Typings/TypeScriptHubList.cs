@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using SignalRTypingsCreator.Core.Typings.Models;
+using TypingsCreator.Core.Models;
 
 namespace SignalRTypingsCreator.Core.Typings
 {

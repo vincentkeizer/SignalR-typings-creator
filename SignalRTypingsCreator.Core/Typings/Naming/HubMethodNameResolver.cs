@@ -1,11 +1,12 @@
 ﻿using System.Reflection;
 using Microsoft.AspNet.SignalR.Hubs;
+using TypingsCreator.Core.Naming;
 
 namespace SignalRTypingsCreator.Core.Typings.Naming
 {
-    public class HubMethodNameResolver
+    public class HubMethodNameResolver : ITypeScriptMethodNameResolver
     {
-        public string GetHubMethodName(MethodInfo method)
+        public string GetMethodName(MethodInfo method)
         {
             var methodName = method.Name;
             var hubMethodNameAttribute = method.GetCustomAttributes(typeof(HubMethodNameAttribute), false);

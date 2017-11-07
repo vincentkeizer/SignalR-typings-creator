@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SignalRTypingsCreator.Core</RootNamespace>
     <AssemblyName>SignalRTypingsCreator.Core</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -53,6 +53,9 @@
       <HintPath>..\packages\System.Threading.Thread.4.0.0\lib\net46\System.Threading.Thread.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
+    <Reference Include="TypingsCreator.Core, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\TypingsCreator.0.5.0\lib\netstandard2.0\TypingsCreator.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\SignalRTypingsCreator.NuGet\Properties\SharedAssemblyInfo.cs">
@@ -68,22 +71,12 @@
     <Compile Include="SignalRTypingsCreatorConfig.cs" />
     <Compile Include="Typings\Creation\TypeScriptHubClassFactory.cs" />
     <Compile Include="Typings\Creation\TypeScriptHubListFactory.cs" />
-    <Compile Include="Typings\Models\TypeScriptModelList.cs" />
     <Compile Include="Typings\Naming\HubClassNameResolver.cs" />
     <Compile Include="Typings\Naming\HubMethodNameResolver.cs" />
-    <Compile Include="Typings\Properties\TypeScriptProperty.cs" />
-    <Compile Include="Typings\Properties\TypeScriptPropertyList.cs" />
     <Compile Include="Typings\TypeScriptClientHub.cs" />
     <Compile Include="Typings\TypeScriptHub.cs" />
     <Compile Include="Typings\TypeScriptHubList.cs" />
-    <Compile Include="Typings\Methods\TypeScriptMethodList.cs" />
     <Compile Include="Typings\TypeScriptServerHub.cs" />
-    <Compile Include="Typings\Methods\TypeScriptMethod.cs" />
-    <Compile Include="Typings\Models\TypeScriptModel.cs" />
-    <Compile Include="Typings\Models\TypeScriptModelCreator.cs" />
-    <Compile Include="Typings\TypeConversion\TypeScriptTypeHandler.cs" />
-    <Compile Include="Typings\Writing\TypingsFile.cs" />
-    <Compile Include="Typings\Writing\TypingsFileWriter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

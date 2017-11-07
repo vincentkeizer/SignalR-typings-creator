@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Text;
-using SignalRTypingsCreator.Core.Typings.Methods;
-using SignalRTypingsCreator.Core.Typings.Models;
 using SignalRTypingsCreator.Core.Typings.Naming;
+using TypingsCreator.Core.Methods;
+using TypingsCreator.Core.Models;
+using TypingsCreator.Core.Naming;
 
 namespace SignalRTypingsCreator.Core.Typings
 {
-    public class TypeScriptServerHub
+    public class TypeScriptServerHub : IModelProvider
     {
         private readonly Type _hubType;
         private readonly TypeScriptMethodList _methodList;
-        private readonly HubClassNameResolver _hubClassNameResolver;
+        private readonly ITypeScriptClassNameResolver _hubClassNameResolver;
 
         public TypeScriptServerHub(Type hubType)
         {
             _hubType = hubType;
             _hubClassNameResolver = new HubClassNameResolver();
-            _methodList = new TypeScriptMethodList(hubType);
+            _methodList = new TypeScriptMethodList(hubType, new HubMethodNameResolver());
         }
 
         public void CreateHubServerInterface(StringBuilder stringBuilder)
@@ -33,7 +34,7 @@ namespace SignalRTypingsCreator.Core.Typings
 
         public string GetHubName()
         {
-            return _hubClassNameResolver.GetHubClassName(_hubType);
+            return _hubClassNameResolver.GetClassName(_hubType);
         }
 
         public string GetHubServerTypeName()

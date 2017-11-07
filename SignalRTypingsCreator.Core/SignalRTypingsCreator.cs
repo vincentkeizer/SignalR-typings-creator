@@ -2,6 +2,7 @@
 using SignalRTypingsCreator.Core.Hubs.Finding;
 using SignalRTypingsCreator.Core.Typings.Creation;
 using SignalRTypingsCreator.Core.Typings.Writing;
+using TypingsCreator.Core.Writing;
 
 namespace SignalRTypingsCreator.Core
 {
@@ -27,7 +28,7 @@ namespace SignalRTypingsCreator.Core
             var typeScriptClasses = generator.Create(hubs);
 
             var writer = new TypingsFileWriter();
-            writer.WriteFiles(config.ProjectRootDir, config.RelativeOutputDir, typeScriptClasses);
+            writer.WriteFiles(config.ProjectRootDir, config.RelativeOutputDir, typeScriptClasses.GetTypeScriptHubClasses());
         }
     }
 }

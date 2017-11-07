@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Text;
-using SignalRTypingsCreator.Core.Typings.Models;
+using TypingsCreator.Core.Classes;
+using TypingsCreator.Core.Files;
+using TypingsCreator.Core.Models;
 
 namespace SignalRTypingsCreator.Core.Typings
 {
-    public class TypeScriptHub
+    public class TypeScriptHub : IModelProvider, ITypeScriptFile, ITypeScriptClass
     {
         private readonly TypeScriptServerHub _serverHub;
         private readonly TypeScriptClientHub _clientHub;

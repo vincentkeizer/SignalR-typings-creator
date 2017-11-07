@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.13
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRTypingsCreator", "SignalRTypingsCreator\SignalRTypingsCreator.csproj", "{18CB6BB1-8934-4760-9FE8-E59A8FF2BC22}"
 EndProject
@@ -13,8 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRDemo", "SignalRDemo\SignalRDemo.csproj", "{62F83230-B8B8-4463-B315-75E112336859}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRTypingsCreator.Core.Tests", "SignalRTypingsCreator.Core.Tests\SignalRTypingsCreator.Core.Tests.csproj", "{68C2213D-CB5F-42F5-A694-3876F94CAD52}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRTypingsCreator.NuGet", "SignalRTypingsCreator.NuGet\SignalRTypingsCreator.NuGet.csproj", "{E831A837-431A-4431-B757-747A8CB47B9D}"
 EndProject
@@ -38,10 +36,6 @@ Global
 		{62F83230-B8B8-4463-B315-75E112336859}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62F83230-B8B8-4463-B315-75E112336859}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62F83230-B8B8-4463-B315-75E112336859}.Release|Any CPU.Build.0 = Release|Any CPU
-		{68C2213D-CB5F-42F5-A694-3876F94CAD52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{68C2213D-CB5F-42F5-A694-3876F94CAD52}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{68C2213D-CB5F-42F5-A694-3876F94CAD52}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{68C2213D-CB5F-42F5-A694-3876F94CAD52}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E831A837-431A-4431-B757-747A8CB47B9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E831A837-431A-4431-B757-747A8CB47B9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E831A837-431A-4431-B757-747A8CB47B9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -53,5 +47,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A48A41E4-AB8A-4085-B7C2-C442A615C157}
 	EndGlobalSection
 EndGlobal
