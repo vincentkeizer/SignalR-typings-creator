@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.AspNet.SignalR.Hubs;
-using TypingsCreator.Core.Naming;
+using TypingsCreator.Core.Classes.Naming;
 
 namespace SignalRTypingsCreator.Core.Typings.Naming
 {

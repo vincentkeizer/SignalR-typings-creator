@@ -67,5 +67,35 @@ namespace SignalRTypingsCreator.Core.Typings
             var name = _serverHub.GetHubName();
             return Char.ToLowerInvariant(name[0]) + name.Substring(1);
         }
+
+        protected bool Equals(TypeScriptHub other)
+        {
+            return Equals(_serverHub, other._serverHub) && Equals(_clientHub, other._clientHub);
+        }
+
+        public bool Equals(ITypeScriptClass other)
+        {
+            if (other is TypeScriptHub)
+            {
+                return Equals((TypeScriptHub)other);
+            }
+            return false;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((TypeScriptHub) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return ((_serverHub != null ? _serverHub.GetHashCode() : 0) * 397) ^ (_clientHub != null ? _clientHub.GetHashCode() : 0);
+            }
+        }
     }
 }

@@ -1,6 +1,7 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using Microsoft.AspNet.SignalR.Hubs;
-using TypingsCreator.Core.Naming;
+using TypingsCreator.Core.Methods.Naming;
 
 namespace SignalRTypingsCreator.Core.Typings.Naming
 {
@@ -16,6 +17,7 @@ namespace SignalRTypingsCreator.Core.Typings.Naming
                 methodName = hubMethodNameValue.MethodName;
             }
 
+            methodName = Char.ToLowerInvariant(methodName[0]) + methodName.Substring(1);
             return methodName;
         }
     }

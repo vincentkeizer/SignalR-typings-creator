@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Text;
+using SignalRTypingsCreator.Core.Models;
 using SignalRTypingsCreator.Core.Typings.Naming;
 using TypingsCreator.Core.Methods;
 using TypingsCreator.Core.Models;
-using TypingsCreator.Core.Naming;
+using TypingsCreator.Core.Classes.Naming;
 
 namespace SignalRTypingsCreator.Core.Typings
 {
@@ -17,13 +18,14 @@ namespace SignalRTypingsCreator.Core.Typings
         {
             _hubType = hubType;
             _hubClassNameResolver = new HubClassNameResolver();
-            _methodList = new TypeScriptMethodList(hubType, new HubMethodNameResolver());
+            _methodList = new TypeScriptMethodList(hubType, new HubMethodNameResolver(), new TypeScriptModelFactory());
         }
 
         public void CreateHubServerInterface(StringBuilder stringBuilder)
         {
             stringBuilder.AppendLine($"interface {GetHubServerTypeName()} {{");
             _methodList.GenerateMethodDefinitions(stringBuilder);
+            stringBuilder.AppendLine();
             stringBuilder.AppendLine("}");
         }
 

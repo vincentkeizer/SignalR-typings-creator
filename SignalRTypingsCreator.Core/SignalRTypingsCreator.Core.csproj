@@ -53,8 +53,8 @@
       <HintPath>..\packages\System.Threading.Thread.4.0.0\lib\net46\System.Threading.Thread.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
-    <Reference Include="TypingsCreator.Core, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\TypingsCreator.0.5.0\lib\netstandard2.0\TypingsCreator.Core.dll</HintPath>
+    <Reference Include="TypingsCreator.Core, Version=0.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\TypingsCreator.0.6.0\lib\netstandard2.0\TypingsCreator.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -65,6 +65,8 @@
     <Compile Include="Hubs\Hub.cs" />
     <Compile Include="Hubs\HubList.cs" />
     <Compile Include="Hubs\IHubClient.cs" />
+    <Compile Include="Models\TypeScriptModel.cs" />
+    <Compile Include="Models\TypeScriptModelFactory.cs" />
     <Compile Include="SignalRTypingsCreator.cs" />
     <Compile Include="Hubs\Finding\HubFinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

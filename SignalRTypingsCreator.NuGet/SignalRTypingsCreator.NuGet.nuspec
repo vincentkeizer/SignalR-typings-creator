@@ -15,7 +15,7 @@
       <dependency id="jquery.TypeScript.DefinitelyTyped" version="2.9.9" />
       <dependency id="signalr.TypeScript.DefinitelyTyped" version="0.4.1" />
       <dependency id="Microsoft.AspNet.SignalR.Core" version="2.2.2" />
-      <dependency id="TypingsCreator" version="0.5.0" />
+      <dependency id="TypingsCreator" version="0.6.0" />
     </dependencies>
   </metadata>
   <files>

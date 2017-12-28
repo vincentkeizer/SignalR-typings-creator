@@ -18,7 +18,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\Release\SignalRTypingsCreator.DotNet46ProjectFileUpdater.exe" target="lib/net46" />
+    <file src="bin\Release\SignalRTypingsCreator.DotNet46ProjectFileUpdater.exe" target="lib/net461" />
     <file src="build/SignalRTypingsCreator.DotNet46ProjectFileUpdater.targets" target="build" />
   </files>
 </package>
